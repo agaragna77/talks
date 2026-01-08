@@ -23,11 +23,11 @@ ssh -i path/to/key.pem fedora@web.e$N.pki.frase.id.au
 Created symlink '/etc/systemd/system/multi-user.target.wants/httpd.service' → '/usr/lib/systemd/system/httpd.service'.
 ```
 
-If you point a web browser at `https://$DOMAIN`, or try to retrieve
-the cert via `curl(1)`, the TLS connection fails.  This is because
-httpd automatically generated a self-signed CA and used it to sign
-the certificate for the web domain.  The browser or HTTP client does
-not trust the unknown CA.
+If you point a web browser at `https://web.$DOMAIN`, or try to retrieve
+the cert via `curl https://$(hostname)`, the TLS connection fails.
+This is because httpd automatically generated a self-signed CA and used 
+it to sign the certificate for the web domain.  The browser or HTTP 
+client does not trust the unknown CA.
 
 The `openssl s_client` command is useful for diagnosing TLS
 connection issues:
